@@ -27,6 +27,21 @@ configurations {
 }
 
 dependencies {
+	//compile group: 'org.springframework.data', name: 'spring-data-hadoop-core', version: '2.4.0.RELEASE'
+	compile 'org.springframework.data:spring-data-hadoop:2.4.0.RELEASE'
+	
+	
+	//compile group: 'org.apache.hadoop', name: 'hadoop-common', version:'2.7.3'
+    //compile group: 'org.apache.hadoop', name: 'hadoop-hdfs', version: '2.7.3'
+    //compile group: 'org.apache.hadoop', name: 'hadoop-yarn-common', version: '2.7.3'
+    //compile group: 'org.apache.hadoop', name: 'hadoop-minicluster', version: '2.7.3'
+    //compile group: 'org.apache.hadoop', name: 'hadoop-mapreduce-client-core', version:'2.7.3'
+    //compile group: 'org.apache.hadoop', name: 'hadoop-mapreduce-client-jobclient', version: '2.7.3'
+    //compile group: 'org.apache.hadoop', name: 'hadoop-mapreduce-client-app', version: '2.7.3'
+    //compile group: 'org.apache.hadoop', name: 'hadoop-mapreduce-client-shuffle', version: '2.7.3'
+    //compile group: 'org.apache.hadoop', name: 'hadoop-mapreduce-client-common', version: '2.7.3'
+    //compile group: 'org.apache.hadoop', name: 'hadoop-client', version: '2.7.3'
+	
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.3.RELEASE'
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
