@@ -38,23 +38,47 @@ public class GenerateDataThread implements Runnable {
 		colors[8] = "Brown";
 		colors[9] = "Maroon";
 
-		brands = new String[10];
-		brands[0] = "BMW";
-		brands[1] = "Mercedes";
-		brands[2] = "Volvo";
-		brands[3] = "Audi";
-		brands[4] = "Renault";
-		brands[5] = "Fiat";
-		brands[6] = "Volkswagen";
-		brands[7] = "Honda";
-		brands[8] = "Jaguar";
-		brands[9] = "Ford";
+		brands = new String[40];
+		brands[0] = "Anasagasti";
+		brands[1] = "Autoar";
+		brands[2] = "Crespi";
+		brands[3] = "Eniak";
+		brands[4] = "Hispano-Argentina";
+		brands[5] = "IAME";
+		brands[6] = "IKA";
+		brands[7] = "SIAM Di Tella";
+		brands[8] = "Zanella";
+		brands[9] = "Bolwell";
+		
+		brands[10] = "Elfin";
+		brands[11] = "FPV";
+		brands[12] = "Holden";
+		brands[13] = "HSV";
+		brands[14] = "Joss";
+		brands[15] = "Allard";
+		brands[16] = "Bombardier";
+		brands[17] = "9ff";
+		brands[18] = "Alpina";
+		brands[19] = "Artega";
+		
+		brands[20] = "Bitter";
+		brands[21] = "Brabus";
+		brands[22] = "Gumpert";
+		brands[23] = "Isdera";
+		brands[24] = "Multicar";
+		brands[25] = "Porsche";
+		brands[26] = "Smart";
+		brands[27] = "Robur";
+		brands[28] = "Wiesmann";
+		brands[29] = "MAN";
+		
+		
 	}
 
 	public List<Car> generateBatch() {
 
 		List<Car> batchCars = new ArrayList<>();
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 10000; i++) {
 			Car randomCar = new Car(getRandomId(), getRandomYear(), getRandomBrand(), getRandomModel(),
 					getRandomColor(), getRandomPrice());
 			batchCars.add(randomCar);
