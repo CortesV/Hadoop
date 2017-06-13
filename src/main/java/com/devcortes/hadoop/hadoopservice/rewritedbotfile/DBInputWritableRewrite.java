@@ -1,4 +1,4 @@
-package com.devcortes.hadoop.hadoopservice.rewritedb;
+package com.devcortes.hadoop.hadoopservice.rewritedbotfile;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -10,15 +10,15 @@ import java.sql.SQLException;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
+import org.apache.hadoop.io.WritableComparable;
 import org.apache.hadoop.mapreduce.lib.db.DBWritable;
 
-public class DBOutputWritableRewrite implements Serializable, Writable, DBWritable {
+public class DBInputWritableRewrite
+		implements Serializable, Writable, DBWritable, WritableComparable<DBInputWritableRewrite> {
 
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-
-	private Integer carId;
 
 	private String uuid;
 
@@ -32,13 +32,13 @@ public class DBOutputWritableRewrite implements Serializable, Writable, DBWritab
 
 	private Integer price;
 
-	public DBOutputWritableRewrite() {
+	public DBInputWritableRewrite() {
 
 	}
 
-	public DBOutputWritableRewrite(Integer id, String uuid, Integer yearProduce, String brand, String model,
+	public DBInputWritableRewrite(Integer id, String uuid, Integer yearProduce, String brand, String model,
 			String color, Integer price) {
-		this.carId = id;
+		this.id = id;
 		this.uuid = uuid;
 		this.yearProduce = yearProduce;
 		this.brand = brand;
@@ -49,7 +49,7 @@ public class DBOutputWritableRewrite implements Serializable, Writable, DBWritab
 
 	@Override
 	public void write(PreparedStatement statement) throws SQLException {
-		statement.setInt(1, this.carId);
+		statement.setInt(1, this.id);
 		statement.setString(2, this.uuid);
 		statement.setInt(3, this.yearProduce);
 		statement.setString(4, this.brand);
@@ -61,7 +61,7 @@ public class DBOutputWritableRewrite implements Serializable, Writable, DBWritab
 
 	@Override
 	public void readFields(ResultSet resultSet) throws SQLException {
-		this.carId = resultSet.getInt(1);
+		this.id = resultSet.getInt(1);
 		this.uuid = resultSet.getString(2);
 		this.yearProduce = resultSet.getInt(3);
 		this.brand = resultSet.getString(4);
@@ -73,7 +73,7 @@ public class DBOutputWritableRewrite implements Serializable, Writable, DBWritab
 
 	@Override
 	public void write(DataOutput out) throws IOException {
-		out.writeInt(this.carId);
+		out.writeInt(this.id);
 		Text.writeString(out, this.uuid);
 		out.writeInt(this.yearProduce);
 		Text.writeString(out, this.brand);
@@ -85,7 +85,7 @@ public class DBOutputWritableRewrite implements Serializable, Writable, DBWritab
 
 	@Override
 	public void readFields(DataInput in) throws IOException {
-		this.carId = in.readInt();
+		this.id = in.readInt();
 		this.uuid = Text.readString(in);
 		this.yearProduce = in.readInt();
 		this.brand = Text.readString(in);
@@ -95,8 +95,46 @@ public class DBOutputWritableRewrite implements Serializable, Writable, DBWritab
 	}
 
 	@Override
+	public int compareTo(DBInputWritableRewrite dbInputWritable) {
+
+		final int EQUAL = 0;
+
+		if (this.equals(dbInputWritable))
+			return EQUAL;
+
+		int comparison = this.id.compareTo(dbInputWritable.getId());
+		if (comparison != EQUAL)
+			return comparison;
+
+		comparison = this.uuid.compareTo(dbInputWritable.getUuid());
+		if (comparison != EQUAL)
+			return comparison;
+
+		comparison = this.yearProduce.compareTo(dbInputWritable.getYearProduce());
+		if (comparison != EQUAL)
+			return comparison;
+
+		comparison = this.brand.compareTo(dbInputWritable.getBrand());
+		if (comparison != EQUAL)
+			return comparison;
+
+		comparison = this.model.compareTo(dbInputWritable.getModel());
+		if (comparison != EQUAL)
+			return comparison;
+
+		comparison = this.color.compareTo(dbInputWritable.getColor());
+		if (comparison != EQUAL)
+			return comparison;
+
+		comparison = this.price.compareTo(dbInputWritable.getPrice());
+		if (comparison != EQUAL)
+			return comparison;
+		return EQUAL;
+	}
+
+	@Override
 	public String toString() {
-		return id + " " + carId + " " + uuid + " " + yearProduce + " " + brand + " " + model + " " + color + " "
+		return id +  " " + uuid + " " + yearProduce + " " + brand + " " + model + " " + color + " "
 				+ price;
 	}
 
@@ -155,13 +193,4 @@ public class DBOutputWritableRewrite implements Serializable, Writable, DBWritab
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-
-	public Integer getCarId() {
-		return carId;
-	}
-
-	public void setCarId(Integer carId) {
-		this.carId = carId;
-	}
-
 }
