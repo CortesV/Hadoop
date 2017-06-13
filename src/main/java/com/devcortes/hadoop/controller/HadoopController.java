@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devcortes.hadoop.hadoopservice.fieldcount.HadoopDriverFieldCount;
 import com.devcortes.hadoop.hadoopservice.filterbrand.HadoopDriverBrand;
 import com.devcortes.hadoop.hadoopservice.rewritedbotfile.HadoopDriverBrandRewrite;
+import com.devcortes.hadoop.hadoopservice.sqoop.SqoopImportToHdfs;
 
 @RestController
 public class HadoopController {
@@ -20,8 +21,10 @@ public class HadoopController {
 	private HadoopDriverBrandRewrite hadoopDriverRewrite;
 
 	@Autowired
-
 	private HadoopDriverBrand hadoopDriver;
+	
+	@Autowired
+	private SqoopImportToHdfs sQoopImportToHdfs;
 
 	@RequestMapping(value = "/fieldcount", method = RequestMethod.GET, produces = "application/json")
 	public Integer fieldcount() throws Exception {
@@ -39,6 +42,13 @@ public class HadoopController {
 	public Integer rewrite() throws Exception {
 
 		return hadoopDriverRewrite.runJob();
+	}
+	
+	@RequestMapping(value = "/sqoop/import", method = RequestMethod.GET, produces = "application/json")
+	public void sqoopeImport() throws Exception {
+
+		sQoopImportToHdfs.importTableToHdfs();
+		System.out.println("DONE");
 	}
 
 }
