@@ -1,10 +1,6 @@
 buildscript {
 	ext {
-<<<<<<< HEAD
 		springBootVersion = '1.5.4.RELEASE'
-=======
-		springBootVersion = '1.5.3.RELEASE'
->>>>>>> 9583ea46f56480a40b97f7e3f6c69a3abf502f80
 	}
 	repositories {
 		mavenCentral()
@@ -15,14 +11,8 @@ buildscript {
 }
 
 apply plugin: 'java'
-<<<<<<< HEAD
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
-=======
-apply plugin: 'eclipse-wtp'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'war'
->>>>>>> 9583ea46f56480a40b97f7e3f6c69a3abf502f80
 
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
@@ -31,10 +21,6 @@ repositories {
 	mavenCentral()
 }
 
-<<<<<<< HEAD
-
-dependencies {
-=======
 configurations {
 	providedRuntime
 }
@@ -44,18 +30,10 @@ configurations.all {
 }
 
 dependencies {
-	
->>>>>>> 9583ea46f56480a40b97f7e3f6c69a3abf502f80
 	compile 'org.springframework.data:spring-data-hadoop:2.4.0.RELEASE'	
 	compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.6'
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '1.5.3.RELEASE'
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.3.RELEASE'
-<<<<<<< HEAD
-	testCompile('org.springframework.boot:spring-boot-starter-test')
-=======
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	
-
->>>>>>> 9583ea46f56480a40b97f7e3f6c69a3abf502f80
 }
