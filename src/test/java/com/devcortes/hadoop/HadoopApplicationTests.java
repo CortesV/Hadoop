@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /*package com.devcortes.hadoop;
+=======
+package com.devcortes.hadoop;
+>>>>>>> 9583ea46f56480a40b97f7e3f6c69a3abf502f80
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,4 +18,7 @@ public class HadoopApplicationTests {
 	}
 
 }
+<<<<<<< HEAD
 */
+=======
+>>>>>>> 9583ea46f56480a40b97f7e3f6c69a3abf502f80

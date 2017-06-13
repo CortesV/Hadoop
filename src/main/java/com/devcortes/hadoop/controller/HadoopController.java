@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.devcortes.hadoop.hadoopservice.fieldcount.HadoopDriverFieldCount;
 import com.devcortes.hadoop.hadoopservice.filterbrand.HadoopDriverBrand;
+<<<<<<< HEAD
 import com.devcortes.hadoop.hadoopservice.rewritedb.HadoopDriverBrandRewrite;
+=======
+>>>>>>> 9583ea46f56480a40b97f7e3f6c69a3abf502f80
 
 @RestController
 public class HadoopController {
@@ -16,9 +19,12 @@ public class HadoopController {
 	private HadoopDriverFieldCount hadoopDriverFieldCount;
 	
 	@Autowired
+<<<<<<< HEAD
 	private HadoopDriverBrandRewrite hadoopDriverRewrite;
 	
 	@Autowired
+=======
+>>>>>>> 9583ea46f56480a40b97f7e3f6c69a3abf502f80
 	private HadoopDriverBrand hadoopDriver;
 	
 	@RequestMapping(value="/fieldcount", method = RequestMethod.GET, produces = "application/json")
@@ -32,10 +38,13 @@ public class HadoopController {
 		
 		return hadoopDriver.runJob();
 	}
+<<<<<<< HEAD
 	
 	@RequestMapping(value="/rewrite", method = RequestMethod.GET, produces = "application/json")
 	public Integer rewrite() throws Exception{
 		
 		return hadoopDriverRewrite.runJob();
 	}
+=======
+>>>>>>> 9583ea46f56480a40b97f7e3f6c69a3abf502f80
 }
