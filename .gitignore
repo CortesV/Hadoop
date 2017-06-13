@@ -1,6 +1,8 @@
 .gradle/
 /build/
-
+!gradle/wrapper/
+/gradle/
+/bin/
 
 ### STS ###
 .apt_generated
