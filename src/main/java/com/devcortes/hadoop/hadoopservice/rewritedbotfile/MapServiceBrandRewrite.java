@@ -1,4 +1,4 @@
-package com.devcortes.hadoop.hadoopservice.rewritedb;
+package com.devcortes.hadoop.hadoopservice.rewritedbotfile;
 
 import java.io.IOException;
 
