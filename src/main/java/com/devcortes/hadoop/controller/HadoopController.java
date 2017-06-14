@@ -9,6 +9,7 @@ import com.devcortes.hadoop.hadoopservice.fieldcount.HadoopDriverFieldCount;
 import com.devcortes.hadoop.hadoopservice.filterbrand.HadoopDriverBrand;
 import com.devcortes.hadoop.hadoopservice.hdfs.HDFSService;
 import com.devcortes.hadoop.hadoopservice.rewritedbotfile.HadoopDriverBrandRewrite;
+import com.devcortes.hadoop.hadoopservice.sqoop.SqoopImportToHdfs;
 
 @RestController
 public class HadoopController {
@@ -22,7 +23,10 @@ public class HadoopController {
 
 	@Autowired
 	private HadoopDriverBrand hadoopDriver;
-	
+
+	@Autowired
+	private SqoopImportToHdfs sQoopImportToHdfs;
+
 	@Autowired
 	private HDFSService hdfsService;
 
@@ -40,32 +44,38 @@ public class HadoopController {
 	public Integer rewrite() throws Exception {
 		return hadoopDriverRewrite.runJob();
 	}
-	
+
+	@RequestMapping(value = "/sqoop/import", method = RequestMethod.GET, produces = "application/json")
+	public void sqoopeImport() throws Exception {
+
+		sQoopImportToHdfs.importTableToHdfs();
+	}
+
 	@RequestMapping(value = "/hdfs/upload", method = RequestMethod.GET, produces = "application/json")
 	public void upload() throws Exception {
 		hdfsService.upload();
 	}
-	
+
 	@RequestMapping(value = "/hdfs/view", method = RequestMethod.GET, produces = "application/json")
 	public void viewFile() throws Exception {
 		hdfsService.viewFile();
 	}
-	
+
 	@RequestMapping(value = "/hdfs/list", method = RequestMethod.GET, produces = "application/json")
 	public void listDirectory() throws Exception {
 		hdfsService.listDirectory();
 	}
-	
+
 	@RequestMapping(value = "/hdfs/create", method = RequestMethod.GET, produces = "application/json")
 	public void createDirectory() throws Exception {
 		hdfsService.createDirectory();
 	}
-	
+
 	@RequestMapping(value = "/hdfs/download", method = RequestMethod.GET, produces = "application/json")
 	public void downloadFile() throws Exception {
 		hdfsService.downloadFile();
 	}
-	
+
 	@RequestMapping(value = "/hdfs/delete", method = RequestMethod.GET, produces = "application/json")
 	public void delete() throws Exception {
 		hdfsService.deleteFile();
